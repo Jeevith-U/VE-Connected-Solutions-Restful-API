@@ -1,7 +1,9 @@
 package com.restfullapi.entity;
 
 import java.util.List;
-import com.Jeevith.restfullapi.config.GenrateCustomeUserID;
+
+import com.restfullapi.configuration.GenrateCustomeUserID;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

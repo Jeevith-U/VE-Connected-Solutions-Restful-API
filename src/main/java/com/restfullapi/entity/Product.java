@@ -3,6 +3,8 @@ package com.restfullapi.entity;
 
 import java.util.List;
 
+import com.restfullapi.configuration.GenrateCustomeProductID;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
