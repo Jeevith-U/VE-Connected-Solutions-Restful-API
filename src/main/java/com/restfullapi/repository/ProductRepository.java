@@ -1,5 +1,9 @@
 package com.restfullapi.repository;
 
-public class ProductRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.restfullapi.entity.Product;
+
+public interface ProductRepository extends JpaRepository<Product, String> {
 
 }
