@@ -18,7 +18,7 @@ import com.restfullapi.service.UserService;
 @RestController  // Marks this class as a RESTful web service controller
 public class UserController {
 
-    private UserService service;
+	private UserService service;
 
     // Constructor-based dependency injection for UserService
     @Autowired

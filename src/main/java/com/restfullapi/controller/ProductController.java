@@ -1,5 +1,6 @@
 package com.restfullapi.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restfullapi.entity.Product;
 import com.restfullapi.responseStructure.ResponseStructure;
 import com.restfullapi.service.ProductService;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 public class ProductController {
@@ -57,4 +58,3 @@ public class ProductController {
 		return productService.findAllProduct() ;
 	}
 }
-

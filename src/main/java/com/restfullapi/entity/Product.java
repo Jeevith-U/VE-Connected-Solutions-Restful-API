@@ -7,8 +7,6 @@ import com.restfullapi.configuration.GenrateCustomeProductID;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -28,7 +26,7 @@ public class Product {
 	@GenrateCustomeProductID
 	private String product_id ;
 	private String name ;
-	private String discription ;
+	private String description ;
 	private double product_price ;
 	private long stocks ;
 	

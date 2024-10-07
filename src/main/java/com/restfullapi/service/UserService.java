@@ -15,7 +15,7 @@ import com.restfullapi.responseStructure.ResponseStructure;
 @Service 
 public class UserService {
     
-    @Autowired 
+	@Autowired 
     private UserDao dao;
     
     @Autowired
@@ -79,7 +79,6 @@ public class UserService {
         // Save the updated user entity to the database
         dao.saveUser(users);
         
-        // Need to save the Updated user	
         ResponseStructure<Users> response = new ResponseStructure<Users>(
                 HttpStatus.OK.value(), "Updated successfully.", users
         );

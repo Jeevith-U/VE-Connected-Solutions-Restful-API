@@ -26,6 +26,7 @@ import lombok.Setter;
 @Table(name = "orders")
 public class Orders {
 	
+
 	@Id
 	@GenrateCustomeOrderID
 	private String order_id ;
