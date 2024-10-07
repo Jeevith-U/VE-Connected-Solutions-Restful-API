@@ -1,5 +1,6 @@
 package com.restfullapi.service;
 
+import com.restfullapi.dto.LoginDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +18,6 @@ public interface UsersService {
 	public ResponseEntity<ResponseStructure<Users>> updateUser(Users users, String id)  ;
 	
 	public ResponseEntity<ResponseStructure<Boolean>> deleteUser(Users users, String id) ;
+
+    String login(LoginDto loginDto);
 }

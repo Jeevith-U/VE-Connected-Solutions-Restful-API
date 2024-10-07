@@ -1,6 +1,7 @@
 package com.restfullapi.controller;
 
 
+import com.restfullapi.dto.LoginDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,12 +28,17 @@ public class UserController {
         this.service = service;
     }
 
+    @PostMapping("/login")
+    public String login(@RequestBody LoginDto loginDto){
+        return service.login(loginDto);
+    }
+
     /**
      * Endpoint to save a new user.
      * @param users - User object that will be created.
      * @return ResponseEntity containing the ResponseStructure with the created user and HttpStatus.
      */
-    @PostMapping("/users")  // Handles POST requests to save a new user
+    @PostMapping("/register")  // Handles POST requests to save a new user
     public ResponseEntity<ResponseStructure<Users>> saveUser(@RequestBody Users users) {
         return service.saveUser(users);  // Delegates the request to the service layer
     }
