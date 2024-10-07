@@ -53,7 +53,7 @@ public class UserServiceImpl implements UsersService {
      */
     public ResponseEntity<ResponseStructure<Users>> saveUser(Users users) {
 
-//    	users.setPassword(passwordEncoder.encode(users.getPassword()));
+    	users.setPassword(passwordEncoder.encode(users.getPassword()));
 
         // Save the user entity to the database
         users = dao.saveUser(users);
