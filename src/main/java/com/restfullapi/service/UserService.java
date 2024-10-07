@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.restfullapi.dao.UserDao;
+import com.restfullapi.dto.UserDto;
 import com.restfullapi.entity.Users;
 import com.restfullapi.exception.UserNotFoundException;
 import com.restfullapi.responseStructure.ResponseStructure;
@@ -51,18 +52,18 @@ public class UserService {
      * @param id - ID of the user to be retrieved.
      * @return ResponseEntity containing ResponseStructure with the found user or UserNotFoundException.
      */
-    public ResponseEntity<ResponseStructure<Users>> findUser(String id) {
+    public ResponseEntity<ResponseStructure<UserDto>> findUser(String id) {
         
         // Find the user by ID or throw a UserNotFoundException if not found
         Users user = dao.findUser(id)
                 .orElseThrow(() -> new UserNotFoundException());
         
-        ResponseStructure<Users> response = new ResponseStructure<Users>(
-                HttpStatus.FOUND.value(), "User found successfully.", user
+        ResponseStructure<UserDto> response = new ResponseStructure<UserDto>(
+                HttpStatus.FOUND.value(), "User found successfully.", new UserDto(user.getUser_id(), user.getUserName(), user.getPassword(), user.getEmail()) 
         );
 
         // Return the response entity with HttpStatus.FOUND (302)
-        return new ResponseEntity<ResponseStructure<Users>>(response, HttpStatus.FOUND);
+        return new ResponseEntity<ResponseStructure<UserDto>>(response, HttpStatus.FOUND);
     }
     
     /**

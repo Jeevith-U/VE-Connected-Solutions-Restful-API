@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.restfullapi.dto.OrderDto;
 import com.restfullapi.entity.Orders;
 import com.restfullapi.responseStructure.ResponseStructure;
 import com.restfullapi.service.OrderService;
@@ -34,7 +35,7 @@ public class OrderController {
 	}
 	
 	@GetMapping("/orders/{id}")
-	public ResponseEntity<ResponseStructure<Orders>> findOrder(@PathVariable String id){
+	public ResponseEntity<ResponseStructure<OrderDto>> findOrder(@PathVariable String id){
 		
 		return orderService.findOrder(id) ;
 	}

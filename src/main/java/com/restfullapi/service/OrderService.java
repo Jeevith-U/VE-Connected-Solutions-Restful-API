@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.restfullapi.dao.OrderDao;
 import com.restfullapi.dao.ProductDao;
 import com.restfullapi.dao.UserDao;
+import com.restfullapi.dto.OrderDto;
 import com.restfullapi.entity.Orders;
 import com.restfullapi.entity.Product;
 import com.restfullapi.entity.Users;
@@ -58,11 +59,11 @@ public class OrderService {
 	 * @param id the ID of the order to find
 	 * @return response entity containing the found order
 	 */
-	public ResponseEntity<ResponseStructure<Orders>> findOrder(String id) {
+	public ResponseEntity<ResponseStructure<OrderDto>> findOrder(String id) {
 		Orders order = dao.findOrder(id).orElseThrow(() -> new OrderNotFoundException());
-		ResponseStructure<Orders> response = new ResponseStructure<Orders>(HttpStatus.FOUND.value(),
-				"Order found successfully.", order);
-		return new ResponseEntity<ResponseStructure<Orders>>(response, HttpStatus.FOUND);
+		ResponseStructure<OrderDto> response = new ResponseStructure<OrderDto>(HttpStatus.FOUND.value(),
+				"Order found successfully.", new OrderDto(order.getOrder_id(), order.getQuantities()));
+		return new ResponseEntity<ResponseStructure<OrderDto>>(response, HttpStatus.FOUND);
 	}
 
 	/**

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.restfullapi.dto.UserDto;
 import com.restfullapi.entity.Users;
 import com.restfullapi.responseStructure.ResponseStructure;
 import com.restfullapi.service.UserService;
@@ -42,7 +43,7 @@ public class UserController {
      * @return ResponseEntity containing the ResponseStructure with the found user or an error if not found.
      */
     @GetMapping("/users/{id}")  // Handles GET requests to find a user by their ID
-    public ResponseEntity<ResponseStructure<Users>> findUser(@PathVariable String id) {
+    public ResponseEntity<ResponseStructure<UserDto>> findUser(@PathVariable String id) {
         return service.findUser(id);  // Delegates the request to the service layer to find the user
     }
 

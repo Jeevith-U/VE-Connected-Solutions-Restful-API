@@ -1,6 +1,7 @@
 package com.restfullapi.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.restfullapi.dao.ProductDao;
+import com.restfullapi.dto.ProductDto;
 import com.restfullapi.entity.Product;
 import com.restfullapi.exception.OrderNotFoundException;
 import com.restfullapi.responseStructure.ResponseStructure;
@@ -41,11 +43,12 @@ public class ProductService {
      * @param id the ID of the product to find
      * @return a response entity containing the found product
      */
-    public ResponseEntity<ResponseStructure<Product>> findProduct(String id) {
+    public ResponseEntity<ResponseStructure<ProductDto>> findProduct(String id) {
         Product product = productDao.findProduct(id).orElseThrow(() -> new OrderNotFoundException());
-        ResponseStructure<Product> response = new ResponseStructure<Product>(HttpStatus.FOUND.value(),
-                "Product found successfully.", product);
-        return new ResponseEntity<ResponseStructure<Product>>(response, HttpStatus.FOUND);
+        
+        ResponseStructure<ProductDto> response = new ResponseStructure<ProductDto>(HttpStatus.FOUND.value(),
+                "Product found successfully.", new ProductDto(product.getProduct_id(), product.getName(), product.getDescription(), product.getProduct_price(), product.getStocks()));
+        return new ResponseEntity<ResponseStructure<ProductDto>>(response, HttpStatus.FOUND);
     }
 
     /**
@@ -83,10 +86,25 @@ public class ProductService {
      *
      * @return a response entity containing a list of products
      */
-    public ResponseEntity<ResponseStructure<List<Product>>> findAllProduct() {
-        List<Product> products = productDao.findAllProducts();
-        ResponseStructure<List<Product>> response = new ResponseStructure<List<Product>>(HttpStatus.FOUND.value(),
-                "Products found successfully.", products);
-        return new ResponseEntity<ResponseStructure<List<Product>>>(response, HttpStatus.FOUND);
+    public ResponseEntity<ResponseStructure<List<ProductDto>>> findAllProduct() {
+       
+    	List<Product> products = productDao.findAllProducts();
+        
+        List<ProductDto> dtoProducts = new ArrayList<>() ;
+        
+        for(Product product: products) {
+        	
+        	ProductDto proddto = new ProductDto() ;
+        	
+        	proddto.setProduct_id(product.getProduct_id());
+        	proddto.setName(product.getName());
+        	proddto.setDescription(product.getDescription());
+        	proddto.setProduct_price(product.getProduct_price());
+        	proddto.setStocks(product.getStocks()) ;
+        }
+        
+        ResponseStructure<List<ProductDto>> response = new ResponseStructure<List<ProductDto>>(HttpStatus.FOUND.value(),
+                "Products found successfully.", dtoProducts);
+        return new ResponseEntity<ResponseStructure<List<ProductDto>>>(response, HttpStatus.FOUND);
     }
 }

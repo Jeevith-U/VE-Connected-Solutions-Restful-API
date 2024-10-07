@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.restfullapi.dto.ProductDto;
 import com.restfullapi.entity.Product;
 import com.restfullapi.responseStructure.ResponseStructure;
 import com.restfullapi.service.ProductService;
@@ -34,7 +35,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/product/{id}")
-	public ResponseEntity<ResponseStructure<Product>> findProduct(@PathVariable String id){
+	public ResponseEntity<ResponseStructure<ProductDto>> findProduct(@PathVariable String id){
 		
 		return productService.findProduct(id) ;
 	}
@@ -53,7 +54,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/product")
-	public ResponseEntity<ResponseStructure<List<Product>>> findAllProducts(){
+	public ResponseEntity<ResponseStructure<List<ProductDto>>> findAllProducts(){
 		
 		return productService.findAllProduct() ;
 	}
