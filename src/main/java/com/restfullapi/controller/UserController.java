@@ -14,16 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.restfullapi.dto.UserDto;
 import com.restfullapi.entity.Users;
 import com.restfullapi.responseStructure.ResponseStructure;
-import com.restfullapi.service.UserService;
+import com.restfullapi.service.UsersService;
 
 @RestController  // Marks this class as a RESTful web service controller
 public class UserController {
 
-	private UserService service;
+	private UsersService service;
 
     // Constructor-based dependency injection for UserService
     @Autowired
-    public UserController(UserService service) {
+    public UserController(UsersService service) {
         this.service = service;
     }
 

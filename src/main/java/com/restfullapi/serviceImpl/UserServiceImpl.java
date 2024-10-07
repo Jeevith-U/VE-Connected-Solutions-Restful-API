@@ -1,4 +1,4 @@
-package com.restfullapi.service;
+package com.restfullapi.serviceImpl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +12,10 @@ import com.restfullapi.dto.UserDto;
 import com.restfullapi.entity.Users;
 import com.restfullapi.exception.UserNotFoundException;
 import com.restfullapi.responseStructure.ResponseStructure;
+import com.restfullapi.service.UsersService;
 
 @Service 
-public class UserService {
+public class UserServiceImpl implements UsersService {
     
 	@Autowired 
     private UserDao dao;
@@ -22,7 +23,7 @@ public class UserService {
     @Autowired
 //    private PasswordEncoder passwordEncoder ;
     
-    public UserService(UserDao dao) {
+    public UserServiceImpl(UserDao dao) {
         this.dao = dao;
     }
     
