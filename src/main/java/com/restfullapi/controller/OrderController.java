@@ -20,6 +20,7 @@ import com.restfullapi.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 
 @RestController
 public class OrderController {
@@ -39,7 +40,7 @@ public class OrderController {
     @Operation(description = "To save the Orders to the Database")
     @ApiResponses(value = @ApiResponse(description = "Order saved successfully", responseCode = "201"))
     @PostMapping("/orders")
-    public ResponseEntity<ResponseStructure<Orders>> saveOrder(@RequestBody Orders orders) {
+    public ResponseEntity<ResponseStructure<Orders>> saveOrder(@Valid @RequestBody Orders orders) {
         return orderService.saveOrder(orders);
     }
 
@@ -79,7 +80,7 @@ public class OrderController {
     @Operation(description = "Update an existing order by ID")
     @ApiResponses(value = @ApiResponse(description = "Order updated successfully", responseCode = "200"))
     @PutMapping("/orders/{id}")
-    public ResponseEntity<ResponseStructure<Orders>> updateOrder(@RequestBody Orders orders, @PathVariable String id) {
+    public ResponseEntity<ResponseStructure<Orders>> updateOrder(@Valid @RequestBody Orders orders, @PathVariable String id) {
         return orderService.updateOrder(orders, id);
     }
 
@@ -92,7 +93,7 @@ public class OrderController {
     @Operation(description = "Delete an order by ID")
     @ApiResponses(value = @ApiResponse(description = "Order deleted successfully", responseCode = "200"))
     @DeleteMapping("/orders/{id}")
-    public ResponseEntity<ResponseStructure<Boolean>> deleteOrder(@RequestBody Orders orders, @PathVariable String id) {
+    public ResponseEntity<ResponseStructure<Boolean>> deleteOrder(@Valid @RequestBody Orders orders, @PathVariable String id) {
         return orderService.deleteOrder(orders, id);
     }
 }
