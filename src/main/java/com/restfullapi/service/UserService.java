@@ -77,10 +77,11 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException());
         
         // Save the updated user entity to the database
-        dao.saveUser(upuser);
+        dao.saveUser(users);
         
+        // Need to save the Updated user
         ResponseStructure<Users> response = new ResponseStructure<Users>(
-                HttpStatus.OK.value(), "Updated successfully.", upuser
+                HttpStatus.OK.value(), "Updated successfully.", users
         );
         
         return new ResponseEntity<ResponseStructure<Users>>(response, HttpStatus.OK);
