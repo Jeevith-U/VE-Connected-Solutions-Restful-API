@@ -9,5 +9,4 @@ public class VeConnectedRestfullApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VeConnectedRestfullApiApplication.class, args);
 	}
-
 }
